@@ -3,6 +3,8 @@ package com.logibix.demo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.core.view.get
 import com.logibix.demo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -13,11 +15,18 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var names = arrayListOf<Char>()
+        val students = arrayListOf<Student>()
 
-        for (ch in 'A'..'Z') names.add(ch)
+        students.add(Student("Shan", "Grad", 1001))
+        students.add(Student("Shub", "Madhyamik", 1002))
+        students.add(Student("Anu", "Twelve", 1003))
+        students.add(Student("Noor", "A", 1004))
+        students.add(Student("XYhan", "C", 1006))
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, names)
+        val adapter = CustomAdapter(this, students)
         binding.lvList.adapter = adapter
+        binding.lvList.setOnItemClickListener { adapterView, view, i, l ->
+            Toast.makeText(this, "Item is clicked", Toast.LENGTH_SHORT).show()
+        }
     }
 }
