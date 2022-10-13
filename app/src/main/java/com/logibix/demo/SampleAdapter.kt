@@ -1,13 +1,14 @@
 package com.logibix.demo
 
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.logibix.demo.databinding.ListItemBinding
 
-class StudentAdapter(val students: ArrayList<Student>) :
-    RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
+class SampleAdapter(val samples: ArrayList<Sample>) :
+    RecyclerView.Adapter<SampleAdapter.StudentViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
         val binding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -15,12 +16,12 @@ class StudentAdapter(val students: ArrayList<Student>) :
     }
 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
-        holder.binding.tvName.text = students[position].name
-        holder.binding.tvStandard.text = students[position].standard
-        holder.binding.tvRollNo.text = students[position].rollNo.toString()
+        holder.binding.vCircle.setBackgroundColor(samples[position].colour)
+        holder.binding.tvText.text = samples[position].text
+        holder.binding.tvNumber.text = samples[position].number.toString()
     }
 
-    override fun getItemCount() = students.size
+    override fun getItemCount() = samples.size
 
     class StudentViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root)
 }
