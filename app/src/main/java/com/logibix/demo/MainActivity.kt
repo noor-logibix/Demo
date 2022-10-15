@@ -3,8 +3,10 @@ package com.logibix.demo
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.logibix.demo.databinding.ActivityMainBinding
+import com.logibix.demo.databinding.DialogBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -40,6 +42,22 @@ class MainActivity : AppCompatActivity() {
             }
 
             builder.create().show()
+        }
+
+        binding.btnShowCustomDialog.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val dialogBinding = DialogBinding.inflate(layoutInflater)
+            builder.setView(dialogBinding.root)
+            dialogBinding.btnOk.setOnClickListener {
+                Toast.makeText(this, "Hello ${dialogBinding.etName.text}", Toast.LENGTH_SHORT).show()
+            }
+
+            val dialog: AlertDialog = builder.create()
+
+            dialogBinding.btnCancel.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialog.show()
         }
     }
 }
