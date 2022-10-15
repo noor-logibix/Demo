@@ -16,11 +16,18 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnShowDialog.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            builder.setPositiveButton("OK") { dialog, id -> dialog.dismiss() }
+            builder.setPositiveButton("OK") { dialog, id ->
+                dialog.dismiss()
+            }
+            builder.setNeutralButton("Exit") { dialog, id ->
+                finish()
+            }
             builder.setTitle("Delete")
             builder.setCancelable(false)
             builder.setMessage("Are you sure you want delete it?")
-            builder.setNegativeButton("Cancel") {dialog, id -> dialog.cancel()}
+            builder.setNegativeButton("Cancel") { dialog, id ->
+                dialog.cancel()
+            }
             builder.setOnDismissListener {
                 val builder2 = AlertDialog.Builder(this)
                 builder2.setTitle("Dismiss")
@@ -31,6 +38,7 @@ class MainActivity : AppCompatActivity() {
                 builder3.setTitle("Cancel")
                 builder3.create().show()
             }
+
             builder.create().show()
         }
     }
